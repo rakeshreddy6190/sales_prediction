@@ -1,4 +1,4 @@
-# Food Prediction
+# Food sales Prediction
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.1.
 
