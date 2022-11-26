@@ -1,0 +1,13 @@
+$font: 'Poppins', sans-serif;
+.text {
+    margin-top:2%;
+	text-transform: uppercase;
+	background: linear-gradient(to right, #6ff390 0%, #091349 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font: {
+        size:42px;
+        weight: 500;
+		family: $font;
+	};
+}

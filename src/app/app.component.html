@@ -1,0 +1,60 @@
+  <h3 class="text-center text"> FOOD SALES FORECAST </h3>
+<div class="row mb-5">
+
+  <div class="col-md-6 mb-4 mb-md-0" style="padding:5%; ">
+
+    <!--Zoom effect-->
+    <div class="view zoom">
+      <img src="../assets/How-to-Accurately-Forecast-Sales-opengraph.png" class="img-fluid "  alt="smaple image">
+      <div class="mask flex-center rgba-black-light">
+        <p class="white-text"> Predict your sales like never before</p>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-6 mb-4 mb-md-0 flex-center" style="padding:5%; margin-top:2%">
+    <form  style="width: 100%;" >
+      <div class="form-group">
+          <span> please view a <input class="btn btn-sm" type="button" (click)="demo()" value="Demo File"> before upload </span>
+      </div>
+      <div class="custom-file form-group">
+        
+        <input type="file" class="custom-file-input"  (input)="onChange(f.files[0])" #f>
+        <label class="custom-file-label" for="customFile">Choose file</label>
+      </div>
+      <p class="text-danger" style="font-size: smaller; text-align: center;" *ngIf="!uploaded"> * Upload files with .csv extension only </p>
+      <br>
+      <div class="form-group" align=center>
+        <input class="btn sunny-morning-gradient" type="button" (click)="upload()" [value]="uploaded?'UPLOADED':'UPLOAD'" [disabled]="uploaded">
+          
+        
+        <input type="button" class="btn tempting-azure-gradient waves-effect waves-dark" (click)="run()" value="RUN">
+      </div> <br>
+      <div class="form-group " align=center>
+        <div class="spinner-border" role="status" *ngIf="load" style="margin-top:3%; margin-left:5%; height:3rem; width:3rem">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>  
+    </form>     
+  </div>
+  </div>
+  <div class="container" *ngIf="ran">
+      <h3> Your Predictions are ready <a class="btn btn-sm purple-gradient" (click)="getResults()"> click here  </a> to get predictions </h3>
+      <div class="table-responsive">
+          <table class="table table-striped table-bordered" *ngFor="let i of retrievedData"> 
+            <tr> {{i['Item Name']}} </tr>
+              <tr>
+                <th> SNO </th>
+                
+                <th> Order Date </th>
+                <th> Sales </th>
+              </tr>
+              <tr *ngFor="let j of i.predictions['Order Date']; let id=index">
+                 <td *ngIf="i.predictions['sales'][id+1]>=0"> {{ id+1 }}  </td>
+                 <td *ngIf="i.predictions['sales'][id+1]>=0"> {{ i.predictions['Order Date'][id+1].split('T')[0] }} </td>
+                 <td *ngIf="i.predictions['sales'][id+1]>=0"> {{ floor(i.predictions['sales'][id+1]) }} </td> 
+              </tr>
+          </table>
+
+      </div>
+  </div>
